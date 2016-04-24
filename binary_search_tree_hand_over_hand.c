@@ -17,7 +17,7 @@ Node* new_node(){
     return n;
 }
 
-void insert_subtree(Node *root, int value){
+void insert_helper(Node *root, int value){
     //tree is empty
     if (!root) {
         root = new_node();
@@ -26,7 +26,7 @@ void insert_subtree(Node *root, int value){
         // on the left
         if(root->value>value){
             if(root->left){
-                insert_subtree(root->left, value);
+                insert_helper(root->left, value);
             }
             else{
                 root->left = new_node();
@@ -34,7 +34,7 @@ void insert_subtree(Node *root, int value){
         } else if(root->value<value){
             //on the right of the tree
             if(root->right){
-                insert_subtree(root->right, value);
+                insert_helper(root->right, value);
             }
             else{
                 root->right = new_node();
@@ -44,7 +44,7 @@ void insert_subtree(Node *root, int value){
 }
 
 void insert(Tree* tree, int value){
-    insert_subtree(tree->root);
+    insert_helper(tree->root);
 }
 
 void delete_node(Node* node, Node* child){
@@ -64,7 +64,7 @@ Node* min_node(Node* root){
     }
 }
 
-void delete_subtree(Node* root, int value){
+void delete_helper(Node* root, int value){
     if (!root)
         return;
     else{
@@ -88,12 +88,12 @@ void delete_subtree(Node* root, int value){
             }
         }
         else if (root-> value > value){
-            delete_subtree(root->left, value);
+            delete_helper(root->left, value);
         }else{
-            delete_subtree(root->right, value);
+            delete_helper(root->right, value);
         }
     }
 }
 void delete(Tree* tree, int value){
-    delete_subtree(tree->root);
+    delete_helper(tree->root);
 }
