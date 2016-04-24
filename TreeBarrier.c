@@ -9,7 +9,9 @@ struct Barrier_t {
 }
 
 
-struct Barrier_Tree
+struct Barrier_Tree{
+  Barrier_t* root;
+}
 
 void Barrier(Barrier_t* b, int p)
 
